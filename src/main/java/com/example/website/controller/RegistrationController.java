@@ -5,6 +5,7 @@ import com.example.website.model.User;
 import com.example.website.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -17,7 +18,8 @@ public class RegistrationController {
     private UserRepo userRepo;
 
     @GetMapping("/registration")
-    public String registration() {
+    public String registration(Model model) {
+        model.addAttribute("message", "");
         return "registration";
     }
 
@@ -25,7 +27,7 @@ public class RegistrationController {
     public String addUser(User user, Map<String, Object> model) {
         User userFromDB = userRepo.findByUsername(user.getUsername());
 
-        if (userFromDB != null && user.getUsername().isEmpty()) {
+        if (userFromDB != null) {
             model.put("message", "User exists!");
             return "registration";
         }

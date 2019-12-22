@@ -7,6 +7,7 @@ import com.example.website.repository.StoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,10 @@ public class CreateStoryController {
     private LocalDateTime date;
 
     @GetMapping("/createstory")
-    public String createstory(){
+    public String createstory(Model model){
+        Iterable<Story> story = storyRepo.findAll();
+        model.addAttribute("story", story);
+        model.addAttribute("message", "");
         return "createstory";
     }
 
