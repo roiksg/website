@@ -19,10 +19,9 @@ public class Story {
     private LocalDateTime dateTimeCreate;
     private LocalDateTime dateTimeUpdate;
 
-    public Story(String title, String cover, String description, String genre, LocalDateTime dateTimeCreate, LocalDateTime dateTimeUpdate, User user) {
+    public Story(String title, String description, String genre, LocalDateTime dateTimeCreate, LocalDateTime dateTimeUpdate, User user) {
         this.title = title;
         this.author = user;
-        this.cover = cover;
         this.description = description;
         this.genre = genre;
         this.dateTimeCreate = dateTimeCreate;

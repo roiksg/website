@@ -5,11 +5,11 @@
     <div>
         <@login.logout/>
     </div>
-    ${message}
+    ${message?if_exists}
     <div>
-        <form action="/createstory" method="post">
+        <form action="/createstory" method="post" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Введите название рассказа">
-            <input type="text" name="cover" placeholder="ссылка на обложку">
+            <input type="file" name="cover" placeholder="обложка">
             <textarea type="text" name="description" placeholder="Описание"></textarea>
             <input type="text" name="genre" placeholder="Введите жанр текста">
             <input type="hidden" name="_csrf" value="${_csrf.token}">
@@ -27,6 +27,11 @@
         <span>${storys.title}</span>
         <span>${storys.genre}</span>
         <i>${storys.author}</i>
+        <div>
+            <#if storys.cover??>
+                <img src="/img/${storys.cover}";
+            </#if>
+        </div>
     </div>
     </#list>
 </@common.page>
