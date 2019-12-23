@@ -71,7 +71,6 @@ public class CreateStoryController {
 
         stories = storyRepo.findAll();
         model.addAttribute("story", stories);
-        model.addAttribute("message", "");
         return "createstory";
     }
 
